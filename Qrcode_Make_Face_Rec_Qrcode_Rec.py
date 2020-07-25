@@ -18,7 +18,7 @@ def findEncodings(images):
     return encodeList
  #
 def markAttendance(name):
-    with open('D:\\facedata\\Attendance.csv','w+') as f:#‘\’ 是转义符号
+    with open('facedata/Attendance.csv','w+') as f:#‘\’ 是转义符号
         myDataList = f.readlines()#[]
         nameList = []
         for line in myDataList:
@@ -40,14 +40,14 @@ def make_QR(medicine_person):
     qr.add_data('XUCHEN')
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
-    img.save("D:\\facedata\\QRcode.bmp")
+    img.save("facedata/QRcode.bmp")
 
 
 
 medicine_person = 'XUCHEN'
 make_QR(medicine_person)
 
-path = 'D:/facedata/image'
+path = 'facedata/image'
 images = []
 classNames = []
 myList = os.listdir(path)
@@ -98,7 +98,7 @@ while success:
             markAttendance(name)
             success = 0
             cv2.imshow('Webcam',img)
-            cv2.waitKey(50)
+            cv2.waitKey(200)
             
 cap.release()
 cv2.destroyAllWindows() 
@@ -111,7 +111,7 @@ while success == 0:
     success, img = cap2.read()
     #img = captureScreen()
     success = 0
-    imgS = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    imgS = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     cv2.imshow('Webcam2',imgS)
     cv2.waitKey(1)
 #recognation QR
